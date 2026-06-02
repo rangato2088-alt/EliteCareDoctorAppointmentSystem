@@ -6,6 +6,9 @@ package view;
 import dao.UserDAO;
 import javax.swing.JOptionPane;
 import model.User;
+import view.AdminDashboard;
+import view.ReceptionDashboard;
+import view.DoctorDashboard;
 
 public class LoginForm extends javax.swing.JFrame {
     
@@ -127,15 +130,38 @@ public class LoginForm extends javax.swing.JFrame {
 
         User user = userDAO.login(username, password);
 
-             if (user != null) {
+        if (user != null) {
 
-             JOptionPane.showMessageDialog(this,
-             "Login Successful");
+             JOptionPane.showMessageDialog(
+             this,
+             "Login Successful!\nWelcome " + user.getUsername(),
+             "Success",
+             JOptionPane.INFORMATION_MESSAGE);
 
-             } else {
+             String role = user.getRole();
 
-             JOptionPane.showMessageDialog(this,
-             "Invalid Username or Password");
+             if (role.equals("ADMIN")) {
+
+                 new AdminDashboard().setVisible(true);
+
+             } else if (role.equals("RECEPTIONIST")) {
+
+                 new ReceptionDashboard().setVisible(true);
+
+             } else if (role.equals("DOCTOR")) {
+
+                 new DoctorDashboard().setVisible(true);
+             }
+
+             this.dispose();
+
+}        else {
+
+             JOptionPane.showMessageDialog(
+                this,
+                "Invalid Username or Password",
+                "Login Failed",
+                JOptionPane.ERROR_MESSAGE);
 }
     }//GEN-LAST:event_btnLoginActionPerformed
 

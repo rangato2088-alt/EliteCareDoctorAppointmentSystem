@@ -3,11 +3,38 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package db;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
-/**
- *
- * @author user
- */
 public class DBConnection {
+    private static Connection connection;
+
+    public static Connection getConnection() {
+
+        try {
+
+            if(connection == null || connection.isClosed()) {
+
+                String url =
+                    "jdbc:mysql://localhost:3306/elitecare_db";
+
+                connection =
+                    DriverManager.getConnection(
+                        url,
+                        XMLReader.getUser(),
+                        XMLReader.getPassword()
+                    );
+
+                System.out.println("Database Connected");
+
+            }
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return connection;
+    }
     
 }

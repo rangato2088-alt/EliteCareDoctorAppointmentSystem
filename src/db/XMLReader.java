@@ -4,10 +4,25 @@
  */
 package db;
 
-/**
- *
- * @author user
- */
 public class XMLReader {
+    public static String getUser() {
+        return "root";
+    }
+
+    public static String getPassword() {
+        return "supun2001";
+    }
+
+    public static String getHost() {
+        return "localhost";
+    }
+
+    public static String getPort() {
+        return "3306";
+    }
+
+    public static String getDatabase() {
+        return "elitecare_db";
+    }
     
 }

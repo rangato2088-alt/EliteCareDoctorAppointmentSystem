@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DBData>
+    <user>root</user>
+    <password>supun2001</password>
+    <host>localhost</host>
+    <port>3306</port>
+    <DB>elitecare_db</DB>
+</DBData>

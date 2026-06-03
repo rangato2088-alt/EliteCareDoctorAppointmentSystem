@@ -3,11 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package view;
-
-/**
- *
- * @author user
- */
+import dao.PatientDAO;
+import model.Patient;
+import javax.swing.JOptionPane;
 public class PatientManagementPanel extends javax.swing.JPanel {
 
     /**
@@ -15,6 +13,37 @@ public class PatientManagementPanel extends javax.swing.JPanel {
      */
     public PatientManagementPanel() {
         initComponents();
+        PatientDAO dao = new PatientDAO();
+        txtPatientId.setText(dao.generatePatientId());
+        loadPatientsTable();
+    }
+    
+    private void loadPatientsTable() {
+        
+        javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel) tblPatients.getModel();
+
+        model.setRowCount(0);
+
+        PatientDAO dao = new PatientDAO();
+
+        java.util.List<Patient> patients = dao.getAllPatients();
+
+        for (Patient patient : patients) {
+
+            model.addRow(new Object[]{
+             patient.getPatientId(),
+             patient.getNic(),
+             patient.getPatientName(),
+             patient.getAge(),
+             patient.getGender(),
+             patient.getContactNumber(),
+             patient.getAddress()
+        });
+    }
+        
+        
+
     }
 
     /**
@@ -77,10 +106,13 @@ public class PatientManagementPanel extends javax.swing.JPanel {
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(this::btnUpdateActionPerformed);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(this::btnDeleteActionPerformed);
 
         btnAdd.setText("Add");
+        btnAdd.addActionListener(this::btnAddActionPerformed);
 
         btnClear.setText("Clear");
 
@@ -95,6 +127,11 @@ public class PatientManagementPanel extends javax.swing.JPanel {
                 "Patient ID", "NIC", "Patient Name", "Age", "Gender", "Contact Number", "Address"
             }
         ));
+        tblPatients.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPatientsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPatients);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -141,25 +178,24 @@ public class PatientManagementPanel extends javax.swing.JPanel {
                             .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                             .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 53, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(191, 191, 191)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(304, Short.MAX_VALUE)))
+                    .addContainerGap(225, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(201, 201, 201)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(294, Short.MAX_VALUE)))
+                    .addContainerGap(215, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(211, 211, 211)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(284, Short.MAX_VALUE)))
+                    .addContainerGap(205, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,26 +240,129 @@ public class PatientManagementPanel extends javax.swing.JPanel {
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(117, 117, 117)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(668, Short.MAX_VALUE)))
+                    .addContainerGap(639, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(127, 127, 127)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(658, Short.MAX_VALUE)))
+                    .addContainerGap(629, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(137, 137, 137)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(648, Short.MAX_VALUE)))
+                    .addContainerGap(619, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        Patient patient = new Patient();
+
+        patient.setPatientId(txtPatientId.getText());
+        patient.setNic(txtNic.getText());
+        patient.setPatientName(txtPatientName.getText());
+        patient.setAge(Integer.parseInt(txtAge.getText()));
+        patient.setGender(cmbGender.getSelectedItem().toString());
+        patient.setContactNumber(txtContactNumber.getText());
+        patient.setAddress(txtAddress.getText());
+
+        PatientDAO dao = new PatientDAO();
+
+        if (dao.addPatient(patient)) {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Patient Added Successfully");
+            loadPatientsTable();
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Failed To Add Patient");
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        Patient patient = new Patient();
+
+        patient.setPatientId(txtPatientId.getText());
+        patient.setNic(txtNic.getText());
+        patient.setPatientName(txtPatientName.getText());
+        patient.setAge(Integer.parseInt(txtAge.getText()));
+        patient.setGender(cmbGender.getSelectedItem().toString());
+        patient.setContactNumber(txtContactNumber.getText());
+        patient.setAddress(txtAddress.getText());
+
+        PatientDAO dao = new PatientDAO();
+
+        if (dao.updatePatient(patient)) {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Patient Updated Successfully");
+
+            loadPatientsTable();
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Failed To Update Patient");
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void tblPatientsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPatientsMouseClicked
+            int row = tblPatients.getSelectedRow();
+
+            txtPatientId.setText(tblPatients.getValueAt(row, 0).toString());
+            txtNic.setText(tblPatients.getValueAt(row, 1).toString());
+            txtPatientName.setText(tblPatients.getValueAt(row, 2).toString());
+            txtAge.setText(tblPatients.getValueAt(row, 3).toString());
+
+            cmbGender.setSelectedItem(
+                    tblPatients.getValueAt(row, 4).toString());
+
+            txtContactNumber.setText(
+                    tblPatients.getValueAt(row, 5).toString());
+
+            txtAddress.setText(
+                    tblPatients.getValueAt(row, 6).toString());
+    }//GEN-LAST:event_tblPatientsMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure you want to delete this patient?",
+            "Confirm Delete",
+            JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+
+            PatientDAO dao = new PatientDAO();
+
+            if (dao.deletePatient(txtPatientId.getText())) {
+
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Patient Deleted Successfully");
+
+                loadPatientsTable();
+
+            } else {
+
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Failed To Delete Patient");
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

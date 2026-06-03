@@ -4,10 +4,7 @@
  */
 package view;
 
-/**
- *
- * @author user
- */
+import view.PatientManagementPanel;
 public class ReceptionDashboard extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReceptionDashboard.class.getName());
@@ -66,6 +63,7 @@ public class ReceptionDashboard extends javax.swing.JFrame {
         btnDashboard.setText("Dashboard");
 
         btnPatientManagement.setText("Patient Management");
+        btnPatientManagement.addActionListener(this::btnPatientManagementActionPerformed);
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
@@ -101,16 +99,7 @@ public class ReceptionDashboard extends javax.swing.JFrame {
                     .addContainerGap(394, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout pnlContentLayout = new javax.swing.GroupLayout(pnlContent);
-        pnlContent.setLayout(pnlContentLayout);
-        pnlContentLayout.setHorizontalGroup(
-            pnlContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        pnlContentLayout.setVerticalGroup(
-            pnlContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        pnlContent.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,6 +123,21 @@ public class ReceptionDashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPatientManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientManagementActionPerformed
+            pnlContent.removeAll();
+
+            PatientManagementPanel panel =
+                new PatientManagementPanel();
+
+            pnlContent.add(
+                panel,
+                java.awt.BorderLayout.CENTER);
+
+            pnlContent.revalidate();
+
+            pnlContent.repaint();
+    }//GEN-LAST:event_btnPatientManagementActionPerformed
 
     /**
      * @param args the command line arguments

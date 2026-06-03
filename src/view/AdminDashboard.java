@@ -4,6 +4,7 @@
  */
 package view;
 import view.UserManagementPanel;
+import javax.swing.JOptionPane;
 public class AdminDashboard extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdminDashboard.class.getName());
@@ -95,6 +96,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         btnReports.setText("Reports");
 
         btnLogout.setText("Logout");
+        btnLogout.addActionListener(this::btnLogoutActionPerformed);
 
         btnUserManagement.setText("User Management");
         btnUserManagement.addActionListener(this::btnUserManagementActionPerformed);
@@ -185,6 +187,25 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         pnlContent.repaint();
     }//GEN-LAST:event_btnDoctorManagementActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        
+
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure you want to logout?",
+            "Logout",
+            JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+
+            LoginForm login = new LoginForm();
+
+            login.setVisible(true);
+
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnLogoutActionPerformed
         
     /**
      * @param args the command line arguments

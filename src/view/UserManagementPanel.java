@@ -109,8 +109,10 @@ public class UserManagementPanel extends javax.swing.JPanel {
         btnUpdate.addActionListener(this::btnUpdateActionPerformed);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(this::btnDeleteActionPerformed);
 
         btnClear.setText("Clear");
+        btnClear.addActionListener(this::btnClearActionPerformed);
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(this::btnAddActionPerformed);
@@ -273,6 +275,51 @@ public class UserManagementPanel extends javax.swing.JPanel {
 
     }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+          int confirm = javax.swing.JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure you want to delete this user?",
+            "Confirm Delete",
+            javax.swing.JOptionPane.YES_NO_OPTION);
+
+           if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+
+                int userId =
+                    Integer.parseInt(txtUserId.getText());
+
+                UserDAO dao = new UserDAO();
+
+           if (dao.deleteUser(userId)) {
+
+                 javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "User Deleted Successfully");
+
+                 loadUsers();
+
+           } else {
+
+                 javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Delete Failed");
+
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+          txtUserId.setText("");
+          txtUsername.setText("");
+          txtPassword.setText("");
+
+          cmbRole.setSelectedIndex(0);
+          cmbStatus.setSelectedIndex(0);
+
+          tblUsers.clearSelection();
+
+          txtUsername.requestFocus();
+    }//GEN-LAST:event_btnClearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

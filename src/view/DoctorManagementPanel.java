@@ -96,6 +96,7 @@ public class DoctorManagementPanel extends javax.swing.JPanel {
         btnDelete.addActionListener(this::btnDeleteActionPerformed);
 
         btnClear.setText("Clear");
+        btnClear.addActionListener(this::btnClearActionPerformed);
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(this::btnUpdateActionPerformed);
@@ -230,6 +231,7 @@ public class DoctorManagementPanel extends javax.swing.JPanel {
         
         
                 loadDoctorsTable();
+                btnClearActionPerformed(null);
         } 
         
     
@@ -268,6 +270,7 @@ public class DoctorManagementPanel extends javax.swing.JPanel {
                         "Doctor Updated Successfully");
 
                     loadDoctorsTable();
+                    btnClearActionPerformed(null);
 
                 } else 
                 {
@@ -320,6 +323,7 @@ public class DoctorManagementPanel extends javax.swing.JPanel {
                 "Doctor Deleted Successfully");
 
             loadDoctorsTable();
+            btnClearActionPerformed(null);
 
         } else {
 
@@ -329,6 +333,18 @@ public class DoctorManagementPanel extends javax.swing.JPanel {
     }
 }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        txtDoctorName.setText("");
+        txtPhone.setText("");
+        txtConsultationFee.setText("");
+
+        cmbSpecialization.setSelectedIndex(0);
+        cmbStatus.setSelectedIndex(0);
+
+        DoctorDAO dao = new DoctorDAO();
+        txtDoctorId.setText(dao.generateDoctorId());
+    }//GEN-LAST:event_btnClearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -74,4 +74,41 @@ public class PatientDAO {
     return patientId;
 }
     
+    public List<Patient> getAllPatients() {
+
+    List<Patient> patients = new ArrayList<>();
+
+    try {
+
+        Connection con = DBConnection.getConnection();
+
+        String sql = "SELECT * FROM patients";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            Patient patient = new Patient();
+
+            patient.setPatientId(rs.getString("patient_id"));
+            patient.setNic(rs.getString("nic"));
+            patient.setPatientName(rs.getString("patient_name"));
+            patient.setAge(rs.getInt("age"));
+            patient.setGender(rs.getString("gender"));
+            patient.setContactNumber(rs.getString("contact_number"));
+            patient.setAddress(rs.getString("address"));
+
+            patients.add(patient);
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+
+    return patients;
+}
+    
 }

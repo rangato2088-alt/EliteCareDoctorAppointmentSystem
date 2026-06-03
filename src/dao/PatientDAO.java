@@ -41,5 +41,37 @@ public class PatientDAO {
 
     return false;
 }
+    public String generatePatientId() {
+
+    String patientId = "P1";
+
+    try {
+
+        Connection con = DBConnection.getConnection();
+
+        String sql =
+            "SELECT patient_id FROM patients ORDER BY patient_id DESC LIMIT 1";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+
+            String lastId = rs.getString("patient_id");
+
+            int number =
+                Integer.parseInt(lastId.substring(1));
+
+            patientId = "P" + (number + 1);
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+
+    return patientId;
+}
     
 }

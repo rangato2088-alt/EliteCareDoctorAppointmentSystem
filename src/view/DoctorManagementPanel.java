@@ -93,6 +93,7 @@ public class DoctorManagementPanel extends javax.swing.JPanel {
         btnAdd.addActionListener(this::btnAddActionPerformed);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(this::btnDeleteActionPerformed);
 
         btnClear.setText("Clear");
 
@@ -298,6 +299,36 @@ public class DoctorManagementPanel extends javax.swing.JPanel {
             txtConsultationFee.setText(
                 tblDoctors.getValueAt(row, 5).toString());
     }//GEN-LAST:event_tblDoctorsMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure you want to delete this doctor?",
+            "Confirm Delete",
+            JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+
+            String doctorId = txtDoctorId.getText();
+
+            DoctorDAO dao = new DoctorDAO();
+
+        if (dao.deleteDoctor(doctorId)) {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Doctor Deleted Successfully");
+
+            loadDoctorsTable();
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Failed To Delete Doctor");
+    }
+}
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

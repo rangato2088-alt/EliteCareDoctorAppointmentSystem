@@ -133,5 +133,26 @@ public class DoctorDAO {
 
     return false;
 }
+     public boolean deleteDoctor(String doctorId) {
+
+    try {
+
+        Connection con = DBConnection.getConnection();
+
+        String sql = "DELETE FROM doctors WHERE doctor_id=?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, doctorId);
+
+        return ps.executeUpdate() > 0;
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+
+    return false;
+}   
     
 }

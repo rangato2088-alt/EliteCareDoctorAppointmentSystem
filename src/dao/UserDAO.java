@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import model.User;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
     public User login(String username, String password) {
@@ -45,5 +47,94 @@ public class UserDAO {
 
         return user;
     }
+    
+    
+    
+    public boolean addUser(User user) {
+
+    try {
+
+        Connection con = DBConnection.getConnection();
+
+        String sql =
+        "INSERT INTO users(username,password,role,status) VALUES(?,?,?,?)";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, user.getUsername());
+        ps.setString(2, user.getPassword());
+        ps.setString(3, user.getRole());
+        ps.setString(4, user.getStatus());
+
+        return ps.executeUpdate() > 0;
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+
+    return false;
+}
+    public List<User> getAllUsers() {
+
+    List<User> users = new ArrayList<>();
+
+    try {
+
+        Connection con = DBConnection.getConnection();
+
+        String sql = "SELECT * FROM users";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            User user = new User();
+
+            user.setUserId(rs.getInt("user_id"));
+            user.setUsername(rs.getString("username"));
+            user.setRole(rs.getString("role"));
+            user.setStatus(rs.getString("status"));
+
+            users.add(user);
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+    }
+
+    return users;
+}
+    public boolean updateUser(User user) {
+
+    try {
+
+        Connection con = DBConnection.getConnection();
+
+        String sql =
+        "UPDATE users SET username=?, password=?, role=?, status=? WHERE user_id=?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setString(1, user.getUsername());
+        ps.setString(2, user.getPassword());
+        ps.setString(3, user.getRole());
+        ps.setString(4, user.getStatus());
+        ps.setInt(5, user.getUserId());
+
+        return ps.executeUpdate() > 0;
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+    }
+
+    return false;
+}
     
 }

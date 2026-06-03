@@ -136,10 +136,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="btnLogout" alignment="0" pref="200" max="32767" attributes="0"/>
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnLogout" max="32767" attributes="0"/>
                       <Component id="btnDashboard" max="32767" attributes="0"/>
                       <Component id="btnDoctorManagement" alignment="0" pref="188" max="32767" attributes="0"/>
                       <Component id="btnAppointmentManagement" alignment="1" pref="188" max="32767" attributes="0"/>
@@ -163,9 +163,9 @@
                   <Component id="btnAppointmentManagement" min="-2" pref="56" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="btnReports" min="-2" pref="52" max="-2" attributes="0"/>
-                  <EmptySpace pref="81" max="32767" attributes="0"/>
-                  <Component id="btnLogout" min="-2" pref="49" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnLogout" min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace pref="159" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

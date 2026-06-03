@@ -88,6 +88,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         btnDashboard.setText("Dashboard");
 
         btnDoctorManagement.setText("Doctor Management");
+        btnDoctorManagement.addActionListener(this::btnDoctorManagementActionPerformed);
 
         btnAppointmentManagement.setText("Appointment Management");
 
@@ -160,6 +161,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUserManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserManagementActionPerformed
+        
         pnlContent.removeAll();
 
         UserManagementPanel panel = new UserManagementPanel();
@@ -169,8 +171,21 @@ public class AdminDashboard extends javax.swing.JFrame {
         pnlContent.revalidate();
 
         pnlContent.repaint();
+            
     }//GEN-LAST:event_btnUserManagementActionPerformed
 
+    private void btnDoctorManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorManagementActionPerformed
+        pnlContent.removeAll();
+
+        DoctorManagementPanel panel = new DoctorManagementPanel();
+
+        pnlContent.add(panel, java.awt.BorderLayout.CENTER);
+
+        pnlContent.revalidate();
+
+        pnlContent.repaint();
+    }//GEN-LAST:event_btnDoctorManagementActionPerformed
+        
     /**
      * @param args the command line arguments
      */

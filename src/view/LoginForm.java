@@ -9,6 +9,7 @@ import model.User;
 import view.AdminDashboard;
 import view.ReceptionDashboard;
 import view.DoctorDashboard;
+import util.SessionManager;
 
 public class LoginForm extends javax.swing.JFrame {
     
@@ -137,6 +138,7 @@ public class LoginForm extends javax.swing.JFrame {
              "Login Successful!\nWelcome " + user.getUsername(),
              "Success",
              JOptionPane.INFORMATION_MESSAGE);
+             SessionManager.setCurrentUser(user);
 
              String role = user.getRole();
 

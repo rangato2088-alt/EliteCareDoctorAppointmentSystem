@@ -102,7 +102,28 @@ public class AppointmentDAO
 
     @Override
     public boolean delete(String appointmentId) {
-        return false;
+        try {
+
+        Connection con = DBConnection.getConnection();
+
+        String sql =
+                "DELETE FROM appointments "
+                + "WHERE appointment_id=?";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ps.setString(1, appointmentId);
+
+        return ps.executeUpdate() > 0;
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+    }
+
+    return false;
     }
 
     public String generateAppointmentId() {

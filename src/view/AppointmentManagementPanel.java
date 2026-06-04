@@ -145,8 +145,10 @@ public class AppointmentManagementPanel extends javax.swing.JPanel {
         btnBook.addActionListener(this::btnBookActionPerformed);
 
         btnClear.setText("Clear");
+        btnClear.addActionListener(this::btnClearActionPerformed);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(this::btnDeleteActionPerformed);
 
         tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -345,6 +347,46 @@ public class AppointmentManagementPanel extends javax.swing.JPanel {
                 "Failed To Update Appointment");
     }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        String appointmentId =
+                txtAppointmentId.getText();
+
+        AppointmentDAO dao =
+                new AppointmentDAO();
+
+        if (dao.delete(appointmentId)) {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Appointment Deleted Successfully");
+
+        loadAppointmentsTable();
+
+        txtAppointmentId.setText(
+                dao.generateAppointmentId());
+
+    } else {
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Failed To Delete Appointment");
+     }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        AppointmentDAO dao = new AppointmentDAO();
+
+        txtAppointmentId.setText(
+            dao.generateAppointmentId());
+
+        cmbPatient.setSelectedIndex(0);
+
+        cmbDoctor.setSelectedIndex(0);
+
+        cmbAppointmentTime.setSelectedIndex(0);
+
+    }//GEN-LAST:event_btnClearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -265,6 +265,7 @@ public class DoctorDashboard extends javax.swing.JFrame {
 
         btnRefresh.setText("Refresh");
         btnRefresh.setActionCommand("Refresh");
+        btnRefresh.addActionListener(this::btnRefreshActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -374,6 +375,13 @@ public class DoctorDashboard extends javax.swing.JFrame {
                 this.dispose();
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        loadDoctorAppointmentsTable();
+        loadTotalAppointments();
+        loadPendingAppointments();
+        loadCompletedAppointments();
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     /**
      * @param args the command line arguments

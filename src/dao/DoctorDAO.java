@@ -153,6 +153,36 @@ public class DoctorDAO {
     }
 
     return false;
-}   
+}
+     
+     public String getDoctorIdByUsername(String username) {
+
+    String doctorId = "";
+
+    try {
+
+        Connection con = DBConnection.getConnection();
+
+        String sql =
+            "SELECT doctor_id FROM doctors "
+          + "WHERE doctor_name LIKE ?";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ps.setString(1, "%" + username.replace("D2", "") + "%");
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            doctorId = rs.getString("doctor_id");
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return doctorId;
+}
     
 }

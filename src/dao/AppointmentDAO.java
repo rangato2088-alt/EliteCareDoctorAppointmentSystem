@@ -216,5 +216,61 @@ public class AppointmentDAO
         return appointments;
     }
     
+    public List<Appointment> getAppointmentsByDoctor(String doctorId) {
+
+    List<Appointment> appointments =
+            new ArrayList<>();
+
+    try {
+
+        Connection con =
+                DBConnection.getConnection();
+
+        String sql =
+                "SELECT * FROM appointments "
+                + "WHERE doctor_id = ?";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ps.setString(1, doctorId);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        while (rs.next()) {
+
+            Appointment appointment =
+                    new Appointment();
+
+            appointment.setAppointmentId(
+                    rs.getString("appointment_id"));
+
+            appointment.setPatientId(
+                    rs.getString("patient_id"));
+
+            appointment.setDoctorId(
+                    rs.getString("doctor_id"));
+
+            appointment.setAppointmentDate(
+                    rs.getString("appointment_date"));
+
+            appointment.setAppointmentTime(
+                    rs.getString("appointment_time"));
+
+            appointment.setStatus(
+                    rs.getString("status"));
+
+            appointments.add(appointment);
+            }
+
+        } catch (Exception e) {
+
+        e.printStackTrace();
+        }
+
+        return appointments;
+    }
+    
     
 }

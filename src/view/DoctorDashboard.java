@@ -25,6 +25,8 @@ public class DoctorDashboard extends javax.swing.JFrame {
             txtDoctorName.setText(currentUser.getUsername());
             loadDoctorAppointmentsTable();
             loadTotalAppointments();
+            loadPendingAppointments();
+            loadCompletedAppointments();
     }
     
     private void loadDoctorAppointmentsTable() {
@@ -74,6 +76,50 @@ public class DoctorDashboard extends javax.swing.JFrame {
         txtTotalAppointments.setText(
             String.valueOf(totalAppointments));
 
+}
+    
+    private void loadPendingAppointments() {
+
+    int pendingCount = 0;
+
+    for (int i = 0;
+         i < tblDoctorAppointments.getRowCount();
+         i++) {
+
+        String status =
+            tblDoctorAppointments
+            .getValueAt(i, 4)
+            .toString();
+
+        if (status.equals("Scheduled")) {
+            pendingCount++;
+        }
+    }
+
+    txtPendingAppointments.setText(
+        String.valueOf(pendingCount));
+}
+    
+    private void loadCompletedAppointments() {
+
+    int completedCount = 0;
+
+    for (int i = 0;
+         i < tblDoctorAppointments.getRowCount();
+         i++) {
+
+        String status =
+            tblDoctorAppointments
+            .getValueAt(i, 4)
+            .toString();
+
+        if (status.equals("Completed")) {
+            completedCount++;
+        }
+    }
+
+    txtCompletedAppointments.setText(
+        String.valueOf(completedCount));
 }
     
 

@@ -5,6 +5,7 @@
 package view;
 
 import view.PatientManagementPanel;
+import view.AppointmentManagementPanel;
 public class ReceptionDashboard extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReceptionDashboard.class.getName());
@@ -57,6 +58,7 @@ public class ReceptionDashboard extends javax.swing.JFrame {
         );
 
         btnAppointmentManagement.setText("Appointment Management");
+        btnAppointmentManagement.addActionListener(this::btnAppointmentManagementActionPerformed);
 
         btnLogout.setText("Logout");
 
@@ -138,6 +140,21 @@ public class ReceptionDashboard extends javax.swing.JFrame {
 
             pnlContent.repaint();
     }//GEN-LAST:event_btnPatientManagementActionPerformed
+
+    private void btnAppointmentManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointmentManagementActionPerformed
+            pnlContent.removeAll();
+
+            AppointmentManagementPanel panel =
+                new AppointmentManagementPanel();
+
+            pnlContent.add(
+                panel,
+                java.awt.BorderLayout.CENTER);
+
+            pnlContent.revalidate();
+
+            pnlContent.repaint();
+    }//GEN-LAST:event_btnAppointmentManagementActionPerformed
 
     /**
      * @param args the command line arguments

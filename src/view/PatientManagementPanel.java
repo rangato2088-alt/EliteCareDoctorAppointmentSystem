@@ -103,7 +103,7 @@ public class PatientManagementPanel extends javax.swing.JPanel {
 
         jTextField7.setText("jTextField1");
 
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male ", "Female" }));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(this::btnUpdateActionPerformed);
@@ -115,6 +115,7 @@ public class PatientManagementPanel extends javax.swing.JPanel {
         btnAdd.addActionListener(this::btnAddActionPerformed);
 
         btnClear.setText("Clear");
+        btnClear.addActionListener(this::btnClearActionPerformed);
 
         tblPatients.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -363,6 +364,22 @@ public class PatientManagementPanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        PatientDAO dao = new PatientDAO();
+
+        txtPatientId.setText(dao.generatePatientId());
+
+        txtNic.setText("");
+        txtPatientName.setText("");
+        txtAge.setText("");
+        txtContactNumber.setText("");
+        txtAddress.setText("");
+
+        cmbGender.setSelectedIndex(0);
+
+        tblPatients.clearSelection();
+    }//GEN-LAST:event_btnClearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

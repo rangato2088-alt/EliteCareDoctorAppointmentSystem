@@ -186,6 +186,7 @@ public class DoctorDashboard extends javax.swing.JFrame {
         );
 
         btnLogout.setText("Logout ");
+        btnLogout.addActionListener(this::btnLogoutActionPerformed);
 
         jLabel1.setText("Completed Today      :");
 
@@ -352,6 +353,27 @@ public class DoctorDashboard extends javax.swing.JFrame {
                 "Failed");
     }
     }//GEN-LAST:event_btnCompleteAppointmentActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        
+
+            int option =
+            javax.swing.JOptionPane.showConfirmDialog(
+                    this,
+                    "Are you sure you want to logout?",
+                    "Logout",
+                    javax.swing.JOptionPane.YES_NO_OPTION);
+
+            if (option == javax.swing.JOptionPane.YES_OPTION) {
+
+            SessionManager.setCurrentUser(null);
+
+            LoginForm loginForm = new LoginForm();
+            loginForm.setVisible(true);
+
+                this.dispose();
+        }
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments

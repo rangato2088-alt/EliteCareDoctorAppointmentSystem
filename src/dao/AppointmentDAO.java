@@ -50,14 +50,54 @@ public class AppointmentDAO
 
         } catch (Exception e) {
             e.printStackTrace();
+            
         }
-
         return false;
+
+        
 }
 
     @Override
     public boolean update(Appointment appointment) {
-        return false;
+        try {
+
+        Connection con = DBConnection.getConnection();
+
+        String sql =
+                "UPDATE appointments "
+                + "SET patient_id=?, "
+                + "doctor_id=?, "
+                + "appointment_date=?, "
+                + "appointment_time=? "
+                + "WHERE appointment_id=?";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ps.setString(1,
+                appointment.getPatientId());
+
+        ps.setString(2,
+                appointment.getDoctorId());
+
+        ps.setString(3,
+                appointment.getAppointmentDate());
+
+        ps.setString(4,
+                appointment.getAppointmentTime());
+
+        ps.setString(5,
+                appointment.getAppointmentId());
+
+        return ps.executeUpdate() > 0;
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+
+    }
+
+    return false;
     }
 
     @Override

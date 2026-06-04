@@ -8,6 +8,9 @@ import model.Patient;
 import dao.AppointmentDAO;
 import dao.DoctorDAO;
 import model.Doctor;
+import javax.swing.JOptionPane;
+import model.Appointment;
+
 public class AppointmentManagementPanel extends javax.swing.JPanel {
 
     /**
@@ -23,6 +26,31 @@ public class AppointmentManagementPanel extends javax.swing.JPanel {
 
         loadPatients();
         loadDoctors();
+        loadAppointmentsTable();
+    }
+    
+     private void loadAppointmentsTable() {
+
+            javax.swing.table.DefaultTableModel model =
+                (javax.swing.table.DefaultTableModel)
+                tblAppointments.getModel();
+
+            model.setRowCount(0);
+
+            AppointmentDAO dao = new AppointmentDAO();
+
+            for (Appointment appointment : dao.getAllAppointments()) {
+
+                model.addRow(new Object[]{
+
+                    appointment.getAppointmentId(),
+                    appointment.getPatientId(),
+                    appointment.getDoctorId(),
+                    appointment.getAppointmentDate(),
+                    appointment.getAppointmentTime()
+
+            });
+        }
     }
         
         private void loadPatients() {
@@ -44,25 +72,25 @@ public class AppointmentManagementPanel extends javax.swing.JPanel {
         
         private void loadDoctors() {
 
-    DoctorDAO dao = new DoctorDAO();
+            DoctorDAO dao = new DoctorDAO();
 
-    cmbDoctor.removeAllItems();
+            cmbDoctor.removeAllItems();
 
-    for (Doctor doctor : dao.getAllDoctors()) {
+            for (Doctor doctor : dao.getAllDoctors()) {
 
-        if (doctor.getStatus().equalsIgnoreCase("ACTIVE")) {
+                if (doctor.getStatus().equalsIgnoreCase("ACTIVE")) {
 
-            cmbDoctor.addItem(
-                doctor.getDoctorId()
-                + " ("
-                + doctor.getDoctorName()
-                + " - "
-                + doctor.getSpecialization()
-                + ")"
-            );
+                    cmbDoctor.addItem(
+                        doctor.getDoctorId()
+                        + " ("
+                        + doctor.getDoctorName()
+                        + " - "
+                        + doctor.getSpecialization()
+                        + ")"
+                    );
+                }
+            }
         }
-    }
-}
         
 
     /**
@@ -111,8 +139,10 @@ public class AppointmentManagementPanel extends javax.swing.JPanel {
         cmbAppointmentTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM" }));
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(this::btnUpdateActionPerformed);
 
         btnBook.setText("Book");
+        btnBook.addActionListener(this::btnBookActionPerformed);
 
         btnClear.setText("Clear");
 
@@ -129,6 +159,11 @@ public class AppointmentManagementPanel extends javax.swing.JPanel {
                 "Appointment ID", "Patient ", "Doctor ", "Appointment Date ", "Appointment Time"
             }
         ));
+        tblAppointments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAppointmentsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblAppointments);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -207,6 +242,109 @@ public class AppointmentManagementPanel extends javax.swing.JPanel {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
+          Appointment appointment = new Appointment();
+
+          appointment.setAppointmentId(
+                txtAppointmentId.getText());
+
+          String patient =
+                cmbPatient.getSelectedItem().toString();
+
+          String doctor =
+                cmbDoctor.getSelectedItem().toString();
+
+          appointment.setPatientId(
+                patient.split(" ")[0]);
+
+          appointment.setDoctorId(
+                doctor.split(" ")[0]);
+
+          appointment.setAppointmentDate(
+                dateChooserCombo1.getText());
+
+          appointment.setAppointmentTime(
+                cmbAppointmentTime.getSelectedItem().toString());
+
+          AppointmentDAO dao = new AppointmentDAO();
+
+          if (dao.add(appointment)) {
+
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Appointment Booked Successfully");
+                
+                loadAppointmentsTable();
+
+                txtAppointmentId.setText(
+                    dao.generateAppointmentId());
+
+           } else {
+
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Failed To Book Appointment");
+            }
+    }//GEN-LAST:event_btnBookActionPerformed
+
+    private void tblAppointmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAppointmentsMouseClicked
+        int row = tblAppointments.getSelectedRow();
+
+        txtAppointmentId.setText(
+                tblAppointments.getValueAt(row, 0).toString());
+
+        cmbPatient.setSelectedItem(
+                tblAppointments.getValueAt(row, 1).toString());
+
+        cmbDoctor.setSelectedItem(
+                tblAppointments.getValueAt(row, 2).toString());
+
+        cmbAppointmentTime.setSelectedItem(
+                tblAppointments.getValueAt(row, 4).toString());
+    }//GEN-LAST:event_tblAppointmentsMouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        Appointment appointment = new Appointment();
+
+        appointment.setAppointmentId(
+            txtAppointmentId.getText());
+
+        String patient =
+            cmbPatient.getSelectedItem().toString();
+
+        String doctor =
+            cmbDoctor.getSelectedItem().toString();
+
+        appointment.setPatientId(
+            patient.split(" ")[0]);
+
+        appointment.setDoctorId(
+            doctor.split(" ")[0]);
+
+        appointment.setAppointmentDate(
+            dateChooserCombo1.getText());
+
+        appointment.setAppointmentTime(
+            cmbAppointmentTime.getSelectedItem().toString());
+
+        AppointmentDAO dao = new AppointmentDAO();
+
+        if (dao.update(appointment)) {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Appointment Updated Successfully");
+
+            loadAppointmentsTable();
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Failed To Update Appointment");
+    }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -6,6 +6,7 @@ package view;
 
 import view.PatientManagementPanel;
 import view.AppointmentManagementPanel;
+import javax.swing.JOptionPane;
 public class ReceptionDashboard extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ReceptionDashboard.class.getName());
@@ -61,6 +62,7 @@ public class ReceptionDashboard extends javax.swing.JFrame {
         btnAppointmentManagement.addActionListener(this::btnAppointmentManagementActionPerformed);
 
         btnLogout.setText("Logout");
+        btnLogout.addActionListener(this::btnLogoutActionPerformed);
 
         btnDashboard.setText("Dashboard");
 
@@ -155,6 +157,26 @@ public class ReceptionDashboard extends javax.swing.JFrame {
 
             pnlContent.repaint();
     }//GEN-LAST:event_btnAppointmentManagementActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        int choice = JOptionPane.showConfirmDialog(
+            this,
+            "Are you sure you want to logout?",
+            "Logout",
+            JOptionPane.YES_NO_OPTION);
+
+        if (choice == JOptionPane.YES_OPTION) {
+
+            LoginForm loginForm = new LoginForm();
+            loginForm.setVisible(true);
+
+            java.awt.Window window =
+                javax.swing.SwingUtilities
+                        .getWindowAncestor(this);
+
+            window.dispose();
+    }
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments

@@ -273,4 +273,30 @@ public class AppointmentDAO
     }
     
     
+    public boolean completeAppointment(String appointmentId) {
+
+    try {
+
+        Connection con =
+                DBConnection.getConnection();
+
+        String sql =
+                "UPDATE appointments "
+                + "SET status = 'Completed' "
+                + "WHERE appointment_id = ?";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ps.setString(1, appointmentId);
+
+        return ps.executeUpdate() > 0;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+    
+    
 }

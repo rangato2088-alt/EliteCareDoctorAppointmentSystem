@@ -9,6 +9,7 @@ import util.SessionManager;
 import model.User;
 import util.SessionManager;
 import dao.DoctorDAO;
+import javax.swing.JOptionPane;
 public class DoctorDashboard extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DoctorDashboard.class.getName());
@@ -213,6 +214,7 @@ public class DoctorDashboard extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblDoctorAppointments);
 
         btnCompleteAppointment.setText("Complete");
+        btnCompleteAppointment.addActionListener(this::btnCompleteAppointmentActionPerformed);
 
         btnRefresh.setText("Refresh");
         btnRefresh.setActionCommand("Refresh");
@@ -264,6 +266,46 @@ public class DoctorDashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCompleteAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteAppointmentActionPerformed
+        int selectedRow =
+        tblDoctorAppointments.getSelectedRow();
+
+        if (selectedRow == -1) {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Please select an appointment");
+
+        return;
+    }
+        
+        String appointmentId =
+            tblDoctorAppointments
+            .getValueAt(selectedRow, 0)
+            .toString();
+        
+        
+        AppointmentDAO dao =
+            new AppointmentDAO();
+
+    if (dao.completeAppointment(
+            appointmentId)) {
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Appointment Completed");
+
+        loadDoctorAppointmentsTable();
+        loadTotalAppointments();
+
+    } else {
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Failed");
+    }
+    }//GEN-LAST:event_btnCompleteAppointmentActionPerformed
 
     /**
      * @param args the command line arguments

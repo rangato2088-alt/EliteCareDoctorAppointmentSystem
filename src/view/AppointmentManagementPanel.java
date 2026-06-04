@@ -47,7 +47,8 @@ public class AppointmentManagementPanel extends javax.swing.JPanel {
                     appointment.getPatientId(),
                     appointment.getDoctorId(),
                     appointment.getAppointmentDate(),
-                    appointment.getAppointmentTime()
+                    appointment.getAppointmentTime(),
+                    appointment.getStatus()    
 
             });
         }
@@ -152,13 +153,13 @@ public class AppointmentManagementPanel extends javax.swing.JPanel {
 
         tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Appointment ID", "Patient ", "Doctor ", "Appointment Date ", "Appointment Time"
+                "Appointment ID", "Patient ", "Doctor ", "Appointment Date ", "Appointment Time", "Status"
             }
         ));
         tblAppointments.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -268,6 +269,8 @@ public class AppointmentManagementPanel extends javax.swing.JPanel {
 
           appointment.setAppointmentTime(
                 cmbAppointmentTime.getSelectedItem().toString());
+          
+          appointment.setStatus("Scheduled");
 
           AppointmentDAO dao = new AppointmentDAO();
 

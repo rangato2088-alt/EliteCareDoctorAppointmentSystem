@@ -15,6 +15,15 @@ public class Appointment {
     private String doctorId;
     private String appointmentDate;
     private String appointmentTime;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getAppointmentId() {
         return appointmentId;

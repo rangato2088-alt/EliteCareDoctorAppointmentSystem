@@ -25,8 +25,8 @@ public class AppointmentDAO
             String sql =
                 "INSERT INTO appointments "
                 + "(appointment_id, patient_id, doctor_id, "
-                + "appointment_date, appointment_time) "
-                + "VALUES (?, ?, ?, ?, ?)";
+                + "appointment_date, appointment_time, status) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
 
             PreparedStatement ps =
                 con.prepareStatement(sql);
@@ -45,6 +45,8 @@ public class AppointmentDAO
 
             ps.setString(5,
                 appointment.getAppointmentTime());
+            ps.setString(6,
+                appointment.getStatus());
 
             return ps.executeUpdate() > 0;
 
@@ -200,6 +202,9 @@ public class AppointmentDAO
 
                 appointment.setAppointmentTime(
                     rs.getString("appointment_time"));
+                appointment.setStatus(
+                    rs.getString("status"));
+                
 
                 appointments.add(appointment);
             }

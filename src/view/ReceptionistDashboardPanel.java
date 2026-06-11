@@ -6,6 +6,8 @@ package view;
 
 import dao.PatientDAO;
 import model.Patient;
+import dao.AppointmentDAO;
+import model.Appointment;
 public class ReceptionistDashboardPanel extends javax.swing.JPanel {
 
     /**
@@ -240,6 +242,7 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
         );
 
         btnSearchAppointment.setText("Search");
+        btnSearchAppointment.addActionListener(this::btnSearchAppointmentActionPerformed);
 
         jLabel9.setText("Appointment search");
         jLabel9.setToolTipText("");
@@ -689,6 +692,47 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
                 "Patient Not Found");
     }
     }//GEN-LAST:event_btnSearchPatientActionPerformed
+
+    private void btnSearchAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAppointmentActionPerformed
+        String appointmentId =
+            txtSearchAppointmentId.getText();
+
+            AppointmentDAO dao =
+            new AppointmentDAO();
+
+            Appointment appointment =
+            dao.searchAppointmentById(
+                    appointmentId);
+
+            if (appointment != null) {
+
+                txtAppointmentId.setText(
+                appointment.getAppointmentId());
+
+                txtAppointmentPatient.setText(
+                appointment.getPatientId());
+
+                txtAppointmentDoctor.setText(
+                appointment.getDoctorId());
+
+                txtAppointmentDate.setText(
+                appointment.getAppointmentDate());
+
+                txtAppointmentTime.setText(
+                appointment.getAppointmentTime());
+
+                txtAppointmentStatus.setText(
+                appointment.getStatus());
+
+        } else 
+           
+            {
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Appointment Not Found");
+    }
+    }//GEN-LAST:event_btnSearchAppointmentActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

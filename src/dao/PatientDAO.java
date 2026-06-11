@@ -198,7 +198,7 @@ public class PatientDAO {
                     rs.getInt("age"));
 
             patient.setContactNumber(
-                    rs.getString("contact"));
+                    rs.getString("contact_number"));
 
             patient.setAddress(
                     rs.getString("address"));

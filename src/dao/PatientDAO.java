@@ -159,4 +159,57 @@ public class PatientDAO {
     return false;
 }
     
+    
+    public Patient searchPatientById(String patientId) {
+
+    Patient patient = null;
+
+    try {
+
+        Connection con =
+                DBConnection.getConnection();
+
+        String sql =
+                "SELECT * FROM patients "
+                + "WHERE patient_id = ?";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ps.setString(1, patientId);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        if (rs.next()) {
+
+            patient = new Patient();
+
+            patient.setPatientId(
+                    rs.getString("patient_id"));
+
+            patient.setPatientName(
+                    rs.getString("patient_name"));
+
+            patient.setGender(
+                    rs.getString("gender"));
+
+            patient.setAge(
+                    rs.getInt("age"));
+
+            patient.setContactNumber(
+                    rs.getString("contact"));
+
+            patient.setAddress(
+                    rs.getString("address"));
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+
+    return patient;
+}
+    
 }

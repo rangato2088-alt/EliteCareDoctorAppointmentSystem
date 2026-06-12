@@ -8,6 +8,15 @@ import dao.PatientDAO;
 import model.Patient;
 import dao.AppointmentDAO;
 import model.Appointment;
+import dao.DoctorDAO;
+import dao.BillDAO;
+import model.Bill;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import db.DBConnection;
 public class ReceptionistDashboardPanel extends javax.swing.JPanel {
 
     /**
@@ -16,6 +25,7 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
     public ReceptionistDashboardPanel() {
         initComponents();
         loadAppointmentsTable();
+        loadBillsTable();
     }
     
     private void loadAppointmentsTable() {
@@ -116,7 +126,7 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
         btnPrintBill = new javax.swing.JButton();
         btnCalculateTotal = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tblBills = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAppointmentSearch = new javax.swing.JTable();
 
@@ -530,8 +540,9 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
         btnPrintBill.setText("Print Bill");
 
         btnCalculateTotal.setText("Calculate Total");
+        btnCalculateTotal.addActionListener(this::btnCalculateTotalActionPerformed);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tblBills.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -539,10 +550,10 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Bill id", "Title 2", "Title 3", "Title 4"
+                "Bill id", "Appointment id", "Total amount", "Date"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(tblBills);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -783,6 +794,148 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
                 .toString());
     }//GEN-LAST:event_tblAppointmentSearchMouseClicked
 
+    private void btnCalculateTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotalActionPerformed
+            try {
+
+        String doctorId =
+                txtBillDoctor.getText();
+
+        DoctorDAO doctorDAO =
+                new DoctorDAO();
+
+        double consultationFee =
+                doctorDAO.getDoctorConsultationFee(
+                        doctorId);
+
+        double hospitalFee =
+                Double.parseDouble(
+                        txthospitalFee.getText());
+
+        double labFee =
+                Double.parseDouble(
+                        txtLabFee.getText());
+
+        double totalAmount =
+                consultationFee +
+                hospitalFee +
+                labFee;
+
+        txtTotalAmount.setText(
+                String.valueOf(totalAmount));
+        
+        BillDAO billDAO =
+        new BillDAO();
+
+        Bill bill =
+        new Bill();
+        
+        String billId =
+        billDAO.generateBillId();
+        
+        String billDate =
+        java.time.LocalDate.now()
+        .toString();
+        
+        bill.setBillId(billId);
+
+        bill.setAppointmentId(
+            txtBillAppointmentId.getText());
+
+        bill.setHospitalBill(
+            hospitalFee);
+
+        bill.setLabFee(
+            labFee);
+
+        bill.setTotalAmount(
+            totalAmount);
+
+        bill.setBillDate(
+            billDate);
+        
+        
+        if (billDAO.add(bill)) {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Bill Saved");
+            
+            loadBillsTable();
+            clearBillForm();
+            
+            
+            
+            
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                this,
+                 "Failed");
+            
+            
+}
+        
+        
+
+    } catch (Exception e) {
+
+        javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Please enter valid fees");
+    }
+    }//GEN-LAST:event_btnCalculateTotalActionPerformed
+
+    private void loadBillsTable() {
+
+    javax.swing.table.DefaultTableModel model =
+            (javax.swing.table.DefaultTableModel)
+            tblBills.getModel();
+
+    model.setRowCount(0);
+
+    try {
+
+        Connection con =
+                DBConnection.getConnection();
+
+        String sql =
+                "SELECT * FROM bills";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        while (rs.next()) {
+
+            model.addRow(new Object[]{
+
+                rs.getString("bill_id"),
+                rs.getString("appointment_id"),
+                rs.getDouble("total_amount"),
+                rs.getString("bill_date")
+            });
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    
+    
+}
+    
+    private void clearBillForm() {
+
+    txtBillAppointmentId.setText("");
+    txtBillPatient.setText("");
+    txtBillDoctor.setText("");
+
+    txthospitalFee.setText("");
+    txtLabFee.setText("");
+    txtTotalAmount.setText("");
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalculateTotal;
@@ -824,8 +977,8 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTable tblAppointmentSearch;
+    private javax.swing.JTable tblBills;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtAppointmentDate;

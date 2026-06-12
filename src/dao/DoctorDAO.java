@@ -184,5 +184,39 @@ public class DoctorDAO {
 
     return doctorId;
 }
+     
+     public double getDoctorConsultationFee(String doctorId) {
+
+    double fee = 0;
+
+    try {
+
+        String sql =
+                "SELECT consultation_fee "
+                + "FROM doctors "
+                + "WHERE doctor_id = ?";
+
+        java.sql.PreparedStatement ps =
+                db.DBConnection.getConnection()
+                        .prepareStatement(sql);
+
+        ps.setString(1, doctorId);
+
+        java.sql.ResultSet rs =
+                ps.executeQuery();
+
+        if (rs.next()) {
+
+            fee = rs.getDouble(
+                    "consultation_fee");
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+
+    return fee;
+}
     
 }

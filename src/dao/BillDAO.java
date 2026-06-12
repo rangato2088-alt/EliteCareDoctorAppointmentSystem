@@ -9,6 +9,7 @@ import java.util.List;
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 
 public class BillDAO implements CrudOperations<Bill> {
@@ -43,6 +44,43 @@ public class BillDAO implements CrudOperations<Bill> {
         
         return false;// Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    public String generateBillId() {
+
+    String billId = "B1";
+
+    try {
+
+        Connection con =
+                DBConnection.getConnection();
+
+        String sql =
+                "SELECT bill_id FROM bills "
+                + "ORDER BY bill_id DESC LIMIT 1";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+
+            String lastId =
+                    rs.getString("bill_id");
+
+            int number =
+                    Integer.parseInt(lastId.substring(1));
+
+            billId =
+                    "B" + (number + 1);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return billId;
+}
 
     @Override
     public boolean update(Bill obj) {

@@ -15,6 +15,32 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
      */
     public ReceptionistDashboardPanel() {
         initComponents();
+        loadAppointmentsTable();
+    }
+    
+    private void loadAppointmentsTable() {
+
+            javax.swing.table.DefaultTableModel model =
+                (javax.swing.table.DefaultTableModel)
+                tblAppointmentSearch.getModel();
+
+            model.setRowCount(0);
+
+            AppointmentDAO dao = new AppointmentDAO();
+
+            for (Appointment appointment : dao.getAllAppointments()) {
+
+                model.addRow(new Object[]{
+
+                    appointment.getAppointmentId(),
+                    appointment.getPatientId(),
+                    appointment.getDoctorId(),
+                    appointment.getAppointmentDate(),
+                    appointment.getAppointmentTime(),
+                    appointment.getStatus()    
+
+            });
+        }
     }
 
     /**
@@ -90,9 +116,9 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
         btnPrintBill = new javax.swing.JButton();
         btnCalculateTotal = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tblBills = new javax.swing.JTable();
+        jTable4 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblAppointments = new javax.swing.JTable();
+        tblAppointmentSearch = new javax.swing.JTable();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -505,7 +531,7 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
 
         btnCalculateTotal.setText("Calculate Total");
 
-        tblBills.setModel(new javax.swing.table.DefaultTableModel(
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -513,10 +539,10 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Bill ID", "Patient", "Total Amount", "Date"
+                "Bill id", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(tblBills);
+        jScrollPane4.setViewportView(jTable4);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -524,11 +550,6 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(btnCalculateTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnPrintBill, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -556,7 +577,12 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
                         .addComponent(txtBillDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(btnCalculateTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(btnPrintBill, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -568,9 +594,9 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBillAppointmentId, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBillPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtBillPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -587,16 +613,16 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTotalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCalculateTotal)
                     .addComponent(btnPrintBill))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
 
-        tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
+        tblAppointmentSearch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -604,10 +630,15 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Appointment ID", "Patient ID", "Patient Name", "Doctor", "Time", "Status"
+                "Appointment ID", "Patient", "Doctor", "Date", "Time", "Status"
             }
         ));
-        jScrollPane1.setViewportView(tblAppointments);
+        tblAppointmentSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAppointmentSearchMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblAppointmentSearch);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -636,7 +667,7 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -660,79 +691,97 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
         txtSearchPatientId.getText();
 
         PatientDAO dao =
-        new PatientDAO();
+            new PatientDAO();
 
         Patient patient =
-        dao.searchPatientById(patientId);
-        
+            dao.searchPatientById(patientId);
+
         if (patient != null) {
 
         txtPatientId.setText(
-                patient.getPatientId());
+            patient.getPatientId());
 
         txtPatientName.setText(
-                patient.getPatientName());
+            patient.getPatientName());
 
         txtGender.setText(
-                patient.getGender());
+            patient.getGender());
 
         txtAge.setText(
-                String.valueOf(patient.getAge()));
+            String.valueOf(patient.getAge()));
 
         txtContact.setText(
-                patient.getContactNumber());
+            patient.getContactNumber());
 
         txtAddress.setText(
-                patient.getAddress());
+            patient.getAddress());
 
-    } else {
+        } else {
 
-        javax.swing.JOptionPane.showMessageDialog(
+            javax.swing.JOptionPane.showMessageDialog(
                 this,
                 "Patient Not Found");
-    }
+        }
     }//GEN-LAST:event_btnSearchPatientActionPerformed
 
     private void btnSearchAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAppointmentActionPerformed
         String appointmentId =
-            txtSearchAppointmentId.getText();
+        txtSearchAppointmentId.getText();
 
-            AppointmentDAO dao =
+        AppointmentDAO dao =
             new AppointmentDAO();
 
-            Appointment appointment =
+        Appointment appointment =
             dao.searchAppointmentById(
-                    appointmentId);
+                appointmentId);
 
-            if (appointment != null) {
+        if (appointment != null) {
 
-                txtAppointmentId.setText(
+            txtAppointmentId.setText(
                 appointment.getAppointmentId());
 
-                txtAppointmentPatient.setText(
+            txtAppointmentPatient.setText(
                 appointment.getPatientId());
 
-                txtAppointmentDoctor.setText(
+            txtAppointmentDoctor.setText(
                 appointment.getDoctorId());
 
-                txtAppointmentDate.setText(
+            txtAppointmentDate.setText(
                 appointment.getAppointmentDate());
 
-                txtAppointmentTime.setText(
+            txtAppointmentTime.setText(
                 appointment.getAppointmentTime());
 
-                txtAppointmentStatus.setText(
+            txtAppointmentStatus.setText(
                 appointment.getStatus());
 
-        } else 
-           
-            {
+        } else {
 
-        javax.swing.JOptionPane.showMessageDialog(
+            javax.swing.JOptionPane.showMessageDialog(
                 this,
                 "Appointment Not Found");
-    }
+        }
     }//GEN-LAST:event_btnSearchAppointmentActionPerformed
+
+    private void tblAppointmentSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAppointmentSearchMouseClicked
+        int selectedRow =
+        tblAppointmentSearch.getSelectedRow();
+
+        txtBillAppointmentId.setText(
+            tblAppointmentSearch
+                .getValueAt(selectedRow, 0)
+                .toString());
+
+        txtBillPatient.setText(
+            tblAppointmentSearch
+                .getValueAt(selectedRow, 1)
+                .toString());
+
+        txtBillDoctor.setText(
+            tblAppointmentSearch
+                .getValueAt(selectedRow, 2)
+                .toString());
+    }//GEN-LAST:event_tblAppointmentSearchMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -775,8 +824,8 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable tblAppointments;
-    private javax.swing.JTable tblBills;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTable tblAppointmentSearch;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtAppointmentDate;

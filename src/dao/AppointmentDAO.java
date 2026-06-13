@@ -349,6 +349,104 @@ public class AppointmentDAO
 
     return appointment;
 }
+  
+    //count total appointments
     
+    public int getTotalAppointments() {
+
+    int count = 0;
+
+    try {
+
+        Connection con =
+                DBConnection.getConnection();
+
+        String sql =
+                "SELECT COUNT(*) FROM appointments";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        if (rs.next()) {
+            count = rs.getInt(1);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return count;
+}
+    
+    
+    // count completed appointments
+    
+    
+    public int getCompletedAppointments() {
+
+    int count = 0;
+
+    try {
+
+        Connection con =
+                DBConnection.getConnection();
+
+        String sql =
+                "SELECT COUNT(*) FROM appointments "
+              + "WHERE status = 'Completed'";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        if (rs.next()) {
+            count = rs.getInt(1);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return count;
+}
+    
+    // count ramain appontmens / scheduled appointments
+    
+    public int getPendingAppointments() {
+
+    int count = 0;
+
+    try {
+
+        Connection con =
+                DBConnection.getConnection();
+
+        String sql =
+                "SELECT COUNT(*) FROM appointments "
+              + "WHERE status = 'Scheduled'";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        if (rs.next()) {
+
+            count = rs.getInt(1);
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+
+    return count;
+}
     
 }

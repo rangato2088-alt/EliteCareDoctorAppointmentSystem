@@ -212,4 +212,38 @@ public class PatientDAO {
     return patient;
 }
     
+    public int getTotalPatients() {
+
+    int count = 0;
+
+    try {
+
+        Connection con =
+                DBConnection.getConnection();
+
+        String sql =
+                "SELECT COUNT(*) FROM patients";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        if (rs.next()) {
+
+            count =
+                    rs.getInt(1);
+        }
+
+    } catch (Exception e) {
+
+        e.printStackTrace();
+    }
+
+    return count;
+}
+    
+    
+    
 }

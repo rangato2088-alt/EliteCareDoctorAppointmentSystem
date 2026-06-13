@@ -26,6 +26,9 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
         initComponents();
         loadAppointmentsTable();
         loadBillsTable();
+        loadStatistics();
+        
+        
     }
     
     private void loadAppointmentsTable() {
@@ -68,12 +71,16 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
         jTable3 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtTotalPatients = new javax.swing.JPanel();
-        txtTotalDoctors = new javax.swing.JPanel();
-        txtTotalAppointments = new javax.swing.JPanel();
-        txtTodayAppointments = new javax.swing.JPanel();
-        txtPendingAppointments = new javax.swing.JPanel();
-        txtCompletedAppointments = new javax.swing.JPanel();
+        lblTotalDoctors = new javax.swing.JLabel();
+        lblTotalPatients = new javax.swing.JLabel();
+        lblCompletedAppointments = new javax.swing.JLabel();
+        lblTotalAppointments = new javax.swing.JLabel();
+        lblPendingAppointments = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -156,125 +163,88 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTable3);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Receptionist Dashboard \n");
 
-        txtTotalPatients.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtTotalPatients.setToolTipText("");
+        lblTotalDoctors.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        javax.swing.GroupLayout txtTotalPatientsLayout = new javax.swing.GroupLayout(txtTotalPatients);
-        txtTotalPatients.setLayout(txtTotalPatientsLayout);
-        txtTotalPatientsLayout.setHorizontalGroup(
-            txtTotalPatientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 89, Short.MAX_VALUE)
-        );
-        txtTotalPatientsLayout.setVerticalGroup(
-            txtTotalPatientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        lblTotalPatients.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        txtTotalDoctors.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblCompletedAppointments.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        javax.swing.GroupLayout txtTotalDoctorsLayout = new javax.swing.GroupLayout(txtTotalDoctors);
-        txtTotalDoctors.setLayout(txtTotalDoctorsLayout);
-        txtTotalDoctorsLayout.setHorizontalGroup(
-            txtTotalDoctorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 89, Short.MAX_VALUE)
-        );
-        txtTotalDoctorsLayout.setVerticalGroup(
-            txtTotalDoctorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        lblTotalAppointments.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        txtTotalAppointments.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblPendingAppointments.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        javax.swing.GroupLayout txtTotalAppointmentsLayout = new javax.swing.GroupLayout(txtTotalAppointments);
-        txtTotalAppointments.setLayout(txtTotalAppointmentsLayout);
-        txtTotalAppointmentsLayout.setHorizontalGroup(
-            txtTotalAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 89, Short.MAX_VALUE)
-        );
-        txtTotalAppointmentsLayout.setVerticalGroup(
-            txtTotalAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel15.setText("Total Doctors");
 
-        txtTodayAppointments.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel24.setText("Total Patients");
 
-        javax.swing.GroupLayout txtTodayAppointmentsLayout = new javax.swing.GroupLayout(txtTodayAppointments);
-        txtTodayAppointments.setLayout(txtTodayAppointmentsLayout);
-        txtTodayAppointmentsLayout.setHorizontalGroup(
-            txtTodayAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 89, Short.MAX_VALUE)
-        );
-        txtTodayAppointmentsLayout.setVerticalGroup(
-            txtTodayAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 55, Short.MAX_VALUE)
-        );
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel25.setText("Completed Appointments");
 
-        txtPendingAppointments.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel26.setText("Total Appointments");
 
-        javax.swing.GroupLayout txtPendingAppointmentsLayout = new javax.swing.GroupLayout(txtPendingAppointments);
-        txtPendingAppointments.setLayout(txtPendingAppointmentsLayout);
-        txtPendingAppointmentsLayout.setHorizontalGroup(
-            txtPendingAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 77, Short.MAX_VALUE)
-        );
-        txtPendingAppointmentsLayout.setVerticalGroup(
-            txtPendingAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 49, Short.MAX_VALUE)
-        );
-
-        txtCompletedAppointments.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        javax.swing.GroupLayout txtCompletedAppointmentsLayout = new javax.swing.GroupLayout(txtCompletedAppointments);
-        txtCompletedAppointments.setLayout(txtCompletedAppointmentsLayout);
-        txtCompletedAppointmentsLayout.setHorizontalGroup(
-            txtCompletedAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 82, Short.MAX_VALUE)
-        );
-        txtCompletedAppointmentsLayout.setVerticalGroup(
-            txtCompletedAppointmentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel27.setText("Remain Appointments");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(txtTotalPatients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTotalDoctors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTotalAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTodayAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtCompletedAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(txtPendingAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblTotalPatients, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(lblTotalDoctors, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTotalAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26))
+                        .addGap(51, 51, 51)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCompletedAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25))
+                        .addGap(73, 73, 73)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel27)
+                            .addComponent(lblPendingAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTotalPatients, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotalDoctors, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTotalAppointments, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTotalAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTotalDoctors, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTotalPatients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 45, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtTodayAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtCompletedAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(txtPendingAppointments, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblCompletedAppointments, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPendingAppointments, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         btnSearchAppointment.setText("Search");
@@ -936,6 +906,54 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
     txtLabFee.setText("");
     txtTotalAmount.setText("");
 }
+    
+    
+    private void loadStatistics() {
+        
+    //total patients    
+
+    PatientDAO patientDAO =
+            new PatientDAO();
+
+    lblTotalPatients.setText(
+            String.valueOf(
+                    patientDAO.getTotalPatients()));
+    
+    //total doctors
+    
+    DoctorDAO doctorDAO = new DoctorDAO();
+    lblTotalDoctors.setText(
+            String.valueOf(
+                    doctorDAO.getTotalDoctors()));
+    
+    //total appointments
+    
+    AppointmentDAO appointmentDAO =
+        new AppointmentDAO();
+
+    lblTotalAppointments.setText(
+        String.valueOf(
+                appointmentDAO.getTotalAppointments()));
+    
+    
+    //total completed appontments
+    
+    lblCompletedAppointments.setText(
+        String.valueOf(
+                appointmentDAO.getCompletedAppointments()));
+    
+    //total remain appointments
+    
+    lblPendingAppointments.setText(
+        String.valueOf(
+                appointmentDAO.getPendingAppointments()));
+    
+    
+    
+}
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalculateTotal;
@@ -948,6 +966,7 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -957,6 +976,10 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -977,6 +1000,11 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JLabel lblCompletedAppointments;
+    private javax.swing.JLabel lblPendingAppointments;
+    private javax.swing.JLabel lblTotalAppointments;
+    private javax.swing.JLabel lblTotalDoctors;
+    private javax.swing.JLabel lblTotalPatients;
     private javax.swing.JTable tblAppointmentSearch;
     private javax.swing.JTable tblBills;
     private javax.swing.JTextField txtAddress;
@@ -990,20 +1018,14 @@ public class ReceptionistDashboardPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtBillAppointmentId;
     private javax.swing.JTextField txtBillDoctor;
     private javax.swing.JTextField txtBillPatient;
-    private javax.swing.JPanel txtCompletedAppointments;
     private javax.swing.JTextField txtContact;
     private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtLabFee;
     private javax.swing.JTextField txtPatientId;
     private javax.swing.JTextField txtPatientName;
-    private javax.swing.JPanel txtPendingAppointments;
     private javax.swing.JTextField txtSearchAppointmentId;
     private javax.swing.JTextField txtSearchPatientId;
-    private javax.swing.JPanel txtTodayAppointments;
     private javax.swing.JTextField txtTotalAmount;
-    private javax.swing.JPanel txtTotalAppointments;
-    private javax.swing.JPanel txtTotalDoctors;
-    private javax.swing.JPanel txtTotalPatients;
     private javax.swing.JTextField txthospitalFee;
     // End of variables declaration//GEN-END:variables
 }

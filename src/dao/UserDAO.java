@@ -160,4 +160,65 @@ public class UserDAO {
     return false;
 }
     
+    
+    public int getTotalUsers() {
+
+    int count = 0;
+
+    try {
+
+        Connection con =
+                DBConnection.getConnection();
+
+        String sql =
+                "SELECT COUNT(*) FROM users";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        if (rs.next()) {
+            count = rs.getInt(1);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return count;
+}
+    
+    
+    public int getActiveUsers() {
+
+    int count = 0;
+
+    try {
+
+        Connection con =
+                DBConnection.getConnection();
+
+        String sql =
+                "SELECT COUNT(*) FROM users "
+              + "WHERE status = 'ACTIVE'";
+
+        PreparedStatement ps =
+                con.prepareStatement(sql);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        if (rs.next()) {
+            count = rs.getInt(1);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return count;
+}
+    
 }

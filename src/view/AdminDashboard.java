@@ -36,7 +36,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         pnlContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 650));
         setSize(new java.awt.Dimension(1000, 650));
 
         pnlTop.setPreferredSize(new java.awt.Dimension(1000, 80));
@@ -64,6 +63,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         pnlMenu.setPreferredSize(new java.awt.Dimension(200, 570));
 
         btnDashboard.setText("Dashboard");
+        btnDashboard.addActionListener(this::btnDashboardActionPerformed);
 
         btnDoctorManagement.setText("Doctor Management");
         btnDoctorManagement.addActionListener(this::btnDoctorManagementActionPerformed);
@@ -178,6 +178,18 @@ public class AdminDashboard extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
+        pnlContent.removeAll();
+
+        AdminDashboardPanel panel =
+            new AdminDashboardPanel();
+
+        pnlContent.add(panel);
+
+        pnlContent.revalidate();
+        pnlContent.repaint();
+    }//GEN-LAST:event_btnDashboardActionPerformed
         
     /**
      * @param args the command line arguments

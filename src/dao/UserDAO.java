@@ -95,6 +95,7 @@ public class UserDAO {
 
             user.setUserId(rs.getInt("user_id"));
             user.setUsername(rs.getString("username"));
+            user.setPassword(rs.getString("password"));
             user.setRole(rs.getString("role"));
             user.setStatus(rs.getString("status"));
 
@@ -220,5 +221,57 @@ public class UserDAO {
 
     return count;
 }
+
+    public User searchUser(String userId) {
+
+    User user = null;
+
+    try {
+
+        String sql =
+                "SELECT * FROM users "
+              + "WHERE user_id = ?";
+
+        PreparedStatement ps =
+                DBConnection.getConnection()
+                .prepareStatement(sql);
+
+        ps.setString(1, userId);
+
+        ResultSet rs =
+                ps.executeQuery();
+
+        if (rs.next()) {
+
+            user = new User();
+
+            user.setUserId(
+                    rs.getInt("user_id"));
+
+            user.setUsername(
+                    rs.getString("username"));
+
+            user.setPassword(
+                    rs.getString("password"));
+
+            user.setRole(
+                    rs.getString("role"));
+
+            user.setStatus(
+                    rs.getString("status"));
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return user;
+}
+    
+    
+    
+    
     
 }
+
+

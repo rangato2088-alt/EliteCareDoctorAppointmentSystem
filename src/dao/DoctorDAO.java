@@ -280,6 +280,56 @@ public class DoctorDAO {
     }
 
     return count;
-}  
+}
+   
+   
+   public Doctor searchDoctor(String doctorId) {
+
+    Doctor doctor = null;
+
+    try {
+
+        String sql =
+                "SELECT * FROM doctors "
+              + "WHERE doctor_id = ?";
+
+        java.sql.PreparedStatement ps =
+                db.DBConnection.getConnection()
+                .prepareStatement(sql);
+
+        ps.setString(1, doctorId);
+
+        java.sql.ResultSet rs =
+                ps.executeQuery();
+
+        if (rs.next()) {
+
+            doctor = new Doctor();
+
+            doctor.setDoctorId(
+                    rs.getString("doctor_id"));
+
+            doctor.setDoctorName(
+                    rs.getString("doctor_name"));
+
+            doctor.setSpecialization(
+                    rs.getString("specialization"));
+
+            doctor.setPhone(
+                    rs.getString("phone"));
+
+            doctor.setStatus(
+                    rs.getString("status"));
+
+            doctor.setConsultationFee(
+                    rs.getDouble("consultation_fee"));
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return doctor;
+}
     
 }

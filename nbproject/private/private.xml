@@ -12,6 +12,11 @@
             <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/dao/PatientDAO.java</file>
             <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/view/LoginForm.java</file>
             <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/view/AdminDashboardPanel.java</file>
+            <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/dao/UserDAO.java</file>
+            <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/view/AdminDashboard.java</file>
+            <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/view/DoctorManagementPanel.java</file>
+            <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/view/UserManagementPanel.java</file>
+            <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/view/DoctorDashboard.java</file>
         </group>
     </open-files>
 </project-private>

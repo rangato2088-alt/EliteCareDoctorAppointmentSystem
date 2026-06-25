@@ -7,6 +7,8 @@ import dao.UserDAO;
 import dao.DoctorDAO;
 import model.Doctor;
 import model.User;
+
+import report.ReportManager;
 /**
  *
  * @author user
@@ -219,16 +221,16 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
 
         jPanel5.setBackground(new java.awt.Color(230, 245, 248));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel9.setText("Specialization");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel10.setText("Doctor name");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel11.setText("Status");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel12.setText("Phone ");
 
         txtDoctorName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -239,7 +241,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
 
         txtDoctorStatus.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel18.setText("Fee");
 
         txtConsultationFee.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -350,16 +352,16 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
 
         jPanel6.setBackground(new java.awt.Color(230, 245, 248));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel13.setText("UserID");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel14.setText("Username");
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel15.setText("Password ");
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel16.setText("Role");
 
         txtUserId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -370,7 +372,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
 
         txtRole.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel17.setText("Status");
 
         txtUserStatus.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -487,6 +489,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         btnPatientsReport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnPatientsReport.setForeground(new java.awt.Color(50, 80, 120));
         btnPatientsReport.setText("Patients");
+        btnPatientsReport.addActionListener(this::btnPatientsReportActionPerformed);
 
         btnHospitalIncomeReport.setBackground(new java.awt.Color(220, 235, 250));
         btnHospitalIncomeReport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -613,6 +616,10 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
                 "User Not Found");
     }
     }//GEN-LAST:event_btnSearchUserActionPerformed
+
+    private void btnPatientsReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientsReportActionPerformed
+       ReportManager.showPatientReport();
+    }//GEN-LAST:event_btnPatientsReportActionPerformed
 
     
     private void loadUsersTable() {

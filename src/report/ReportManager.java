@@ -35,4 +35,30 @@ public class ReportManager {
     }
     
     
+    
+    
+    
+    public static void doctorReport() {
+
+    try {
+
+        Connection con = DBConnection.getConnection();
+
+        JasperReport report = JasperCompileManager.compileReport(
+                "src/report/DoctorReport.jrxml");
+
+        JasperPrint print = JasperFillManager.fillReport(
+                report,
+                new HashMap<>(),
+                con);
+
+        JasperViewer.viewReport(print, false);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+}
+    
+    
 }

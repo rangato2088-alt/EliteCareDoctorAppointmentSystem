@@ -18,6 +18,9 @@
             <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/view/UserManagementPanel.java</file>
             <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/view/DoctorDashboard.java</file>
             <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/view/PatientManagementPanel.java</file>
+            <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/db/DBConnection.java</file>
+            <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/db/XMLReader.java</file>
+            <file>file:/D:/ALL/Documents/NetBeansProjects/EliteCareDoctorAppointmentSystem/src/report/ReportManager.java</file>
         </group>
     </open-files>
 </project-private>

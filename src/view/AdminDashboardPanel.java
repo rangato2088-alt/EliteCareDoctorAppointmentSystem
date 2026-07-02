@@ -479,6 +479,7 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
         btnDoctorsReport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnDoctorsReport.setForeground(new java.awt.Color(50, 80, 120));
         btnDoctorsReport.setText("Doctors");
+        btnDoctorsReport.addActionListener(this::btnDoctorsReportActionPerformed);
 
         btnUsersReport.setBackground(new java.awt.Color(220, 235, 250));
         btnUsersReport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -620,6 +621,10 @@ public class AdminDashboardPanel extends javax.swing.JPanel {
     private void btnPatientsReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPatientsReportActionPerformed
        ReportManager.showPatientReport();
     }//GEN-LAST:event_btnPatientsReportActionPerformed
+
+    private void btnDoctorsReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorsReportActionPerformed
+        ReportManager.doctorReport();    
+    }//GEN-LAST:event_btnDoctorsReportActionPerformed
 
     
     private void loadUsersTable() {
